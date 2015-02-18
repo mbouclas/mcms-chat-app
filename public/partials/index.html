@@ -1,0 +1,45 @@
+<div class="container" id="nickname-container" ng-hide="Main.user.nick">
+
+    <h1>Choose a nickname!</h1>
+    <span id="nick-error"></span>
+    <form id="choose-nickname" ng-submit="Main.chooseNickName()">
+        <div class="form-group">
+            <input type="text" id="nickname" ng-model="Main.nick" class="form-control">
+            <button type="submit" class="btn btn-lg btn-success">Choose</button>
+        </div>
+
+    </form>
+</div>
+
+<div class="container" id="chat-container" >
+    <div class="row">
+        <div id="users" class="col-md-4">
+            <h2>Users</h2>
+            <ul>
+                <li ng-repeat="user in Main.connectedUsers">
+                    <a href="" ng-bind="user.nick" start-private-chat></a>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix visible-xs"></div>
+        <div class="col-md-4" id="chat-col">
+            <div class="row" id="room"><h2>Lobby</h2></div>
+            <div class="row" id="chat">
+                <ul>
+                    <li ng-repeat="message in Main.messages"><strong>{{message.from.nick}}:</strong> <span>{{message.text}}</span></li>
+                </ul>
+            </div>
+            <div class="row">
+                <form id="send-message" ng-submit="Main.sendPublicMessage()">
+                    <input type="text" id="new-message" autocomplete="off" ng-model="Main.message">
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row" id="space-for-chats">
+
+    </div>
+</div>
