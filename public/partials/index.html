@@ -17,7 +17,7 @@
             <h2>Users</h2>
             <ul>
                 <li ng-repeat="user in Main.connectedUsers">
-                    <a href="" ng-bind="user.nick" start-private-chat></a>
+                    <a href="" ng-bind="user.nick" start-private-chat data-uname="{{ user.nick }}" data-uid="{{ user.id }}"></a>
                 </li>
             </ul>
         </div>

@@ -1,3 +1,16 @@
 <div>
-    <h1>Here</h1>
+    <div class="col-md-4" id="chat-col">
+        <div class="row" id="room"><h2>{{ userNameTo }}</h2></div>
+        <div class="row" id="chat">
+            <ul>
+                <li ng-repeat="message in Chat.messages"><strong>{{message.from.nick}}:</strong> <span>{{message.msg}}</span></li>
+            </ul>
+        </div>
+        <div class="row">
+            <form id="send-message" ng-submit="Chat.sendPrivateMessage()">
+                <input type="text" id="new-message" autocomplete="off" ng-model="Chat.message">
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </div>
 </div>

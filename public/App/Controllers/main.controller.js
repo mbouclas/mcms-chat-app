@@ -4,8 +4,8 @@
         .module('mcms')
         .controller('mainCtrl', mainCtrl);
 
-    mainCtrl.$inject = ['Socket','$timeout','lodash'];
-    function mainCtrl(Socket,$timeout,lodash){
+    mainCtrl.$inject = ['Socket','$timeout','lodash','$rootScope','messanger'];
+    function mainCtrl(Socket,$timeout,lodash,$rootScope,messanger){
         var vm = this;
         vm.user = {};
         vm.connectedUsers = [];
@@ -28,18 +28,22 @@
                 return;//show an error
             }
 
-            vm.user = user;
             vm.connectedUsers.push(user);
 
         });
 
         Socket.on('newMessage', function (message) {
             vm.messages.push(message);
-            console.log(message);
+        });
+
+        Socket.on('privateMessage',function(message){
+            $rootScope.$broadcast('privateMessage',message);
         });
 
         vm.chooseNickName = function(){
             console.log('Sending new nick ' + vm.nick);
+            vm.user = {nick : vm.nick};
+            $rootScope.user = vm.user;
             Socket.emit('chooseNickname',vm.nick);
         };
 

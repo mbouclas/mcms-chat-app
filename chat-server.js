@@ -77,9 +77,10 @@ module.exports = (function (io) {
     }
 
     function handlePrivateMessaging(socket){
-        socket.on('private message', function(data){
+        socket.on('privateMessage', function(data){
             var from = connectedClients[socket.id];
-            clients[data.userToPM].emit('private message', {from: from, msg: data.msg});
+            clients[data.userToPM].emit('privateMessage', {from: from, msg: data.msg,created_at: new Date()});
+            console.log('Sending PM to {0} from {1}',data.userToPM,from);
         });
     }
 
@@ -89,7 +90,7 @@ module.exports = (function (io) {
             delete namesUsed[ind];
             delete clients[ind];
             delete connectedClients[socket.id];
-            io.sockets.emit('user disconnect', ind);
+            serverUi.emit('userDisconnect', ind);
         });
     }
 });
