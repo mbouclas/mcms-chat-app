@@ -86,11 +86,16 @@ module.exports = (function (io) {
 
     function handleClientDisconnections(socket){
         socket.on('disconnect', function(){
-            var ind = namesUsed.indexOf(connectedClients[socket.id]);
-            delete namesUsed[ind];
-            delete clients[ind];
+            if (typeof connectedClients[socket.id] == 'undefined' || typeof connectedClients[socket.id].nick == 'undefined'){
+                return;
+            }
+            var ind = namesUsed.indexOf(connectedClients[socket.id].nick);
+            var nick = namesUsed[ind];
+
+            namesUsed.splice(ind,1);
+            clients.splice(ind,1);
             delete connectedClients[socket.id];
-            serverUi.emit('userDisconnect', ind);
+            serverUi.emit('userDisconnect', {ind : ind, nick : nick });
         });
     }
 });

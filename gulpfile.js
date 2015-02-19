@@ -25,7 +25,7 @@ var paths = {
         jsAssetsPath+'angular-route/angular-route.min.js',
         jsAssetsPath+'angular-sanitize/angular-sanitize.min.js',
         jsAssetsPath+'angular-socket-io/socket.min.js',
-        jsAssetsPath+'lodash/dist/lodash.min.js',
+        jsAssetsPath+'lodash/lodash.min.js',
         jsAssetsPath+'momentjs/min/moment.min.js',
         jsAssetsPath+'slug/slug.js'
     ],

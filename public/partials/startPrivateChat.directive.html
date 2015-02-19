@@ -3,7 +3,10 @@
         <div class="row" id="room"><h2>{{ userNameTo }}</h2></div>
         <div class="row" id="chat">
             <ul>
-                <li ng-repeat="message in Chat.messages"><strong>{{message.from.nick}}:</strong> <span>{{message.msg}}</span></li>
+                <li ng-repeat="message in Chat.messages">
+                    <strong ng-if="message.from.nick != Chat.user.nick">{{message.from.nick}}:</strong>
+                    <strong ng-if="message.from.nick == Chat.user.nick">me:</strong>
+                    <span>{{message.msg}}</span></li>
             </ul>
         </div>
         <div class="row">

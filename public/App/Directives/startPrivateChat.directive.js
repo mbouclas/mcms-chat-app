@@ -51,6 +51,7 @@
         var vm = this;
         vm.messages = [];
         vm.message = '';
+        vm.user = $rootScope.user;
 
         vm.sendPrivateMessage = function(){
             console.log('Sending PM to ' + $scope.userTo);
